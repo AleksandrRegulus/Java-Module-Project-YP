@@ -61,12 +61,22 @@ public class Main {
 
     public static String getPadejOfRubl (double sum) {
 
-        double i = Math.floor(sum % 10); // получаем последний символ целой части суммы как число
-
-        // выбираем правильный падеж Рубля
-        if (i == 1) { return "рубль"; }
-        else if (i >= 2 && i <= 4) { return "рубля"; }
-        else { return "рублей"; }
+        int i = (int) Math.floor(sum % 100); // получаем последний символ целой части суммы как число
+        if (i >= 11 && i <= 19) { // выбираем правильный падеж Рубля
+            return "рублей";
+        } else {
+            i = (int)Math.floor(sum % 10);
+            switch (i) {
+                case 1:
+                    return "рубль";
+                case 2:
+                case 3:
+                case 4:
+                    return "рубля";
+                default:
+                    return "рублей";
+            }
+        }
     }
 
 }
